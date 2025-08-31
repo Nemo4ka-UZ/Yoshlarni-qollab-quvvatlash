@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOSHLARNI QO'LLAB-QUVVATLASH</title>
+    <link href="e27d488d2118.jpg" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: url('bayroq.jpg') no-repeat center center fixed; /* faqat bayroq fon */
+            background-size: cover;
+            color: rgb(223, 16, 16);
+            text-align: center;
+        }
+
+        .logo img {
+            width: 120px;
+            margin: 30px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .links {
+            margin-top: 20px; /* tugmalarni tepaga yaqinlashtirish */
+        }
+
+        .link {
+            display: inline-block;
+            background-color: #16b4db;
+            color: #ffffff;
+            padding: 15px 30px;
+            margin: 10px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .link:hover {
+            background-color: #d11111;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+        /* Chat qismi pastda */
+        .chatbox {
+            margin: 40px auto;
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: left;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #16b4db;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background: #d11111;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="gerb.jpg" alt="Gerb O'zbekiston">
+    </div>
+    <h1><b>YOSHLARNI QO'LLAB-QUVVATLASH BIZNING BURCHIMIZ</b></h1>
+    <p><b>QOLLAB QUVVATLASH SAYTLARI:</b></p>
+    
+    <div class="links">
+        <a class="link" href="https://www.gov.uz/oz/yoshlar" target="_blank">YOSHLAR ISHLARI AGENTLIGI</a>
+        <a class="link" href="https://www.gazeta.uz/oz/2025/02/14/support-of-youth/" target="_blank">YOSHLARNI QOLLAB QUVVATLASH</a>
+        <a class="link" href="https://nbu.uz/maqolalar/korrupsiya-taraqqiyot-kushandasi" target="_blank">BIZ KORRUPSIYAGA QARSHIMIZ</a>
+        <a class="link" href="https://www.gov.uz/oz/edu" target="_blank">O'ZBEKISTON HUKUMAT PORTALI</a>
+        <a class="link" href="https://xs.uz" target="_blank">Xalq So‘zi</a>
+        <a class="link" href="https://t.me/A_Abdullayev3005" target="_blank">ABDULLAYEV ABDULLOH</a>
+    </div>
+
+    <!-- CHAT (Savol yuborish) -->
+    <div class="chatbox">
+        <h2>Savol yuborish</h2>
+        <input type="text" id="userInput" placeholder="Savolingizni yozing..." style="width:70%" />
+        <button onclick="sendToTelegram()">Yuborish</button>
+    </div>
+
+        <script>
+        function sendToTelegram() {
+            const text = document.getElementById("userInput").value;
+            if (!text) {
+                alert("Iltimos, savolingizni yozing!");
+                return;
+            }
+
+            // ⚠️ BU YERGA O'ZINGNING TOKEN VA CHAT_ID NI QO'YASAN
+            const botToken = "8276188910:AAF9GUssI8Oez46cgzYq_OsLN-baPeuNsRk";  
+            const chatId = "7147631734";              
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    alert("Savolingiz yuborildi ✅");
+                    document.getElementById("userInput").value = "";
+                } else {
+                    alert("Xatolik yuz berdi ❌");
+                }
+            })
+            .catch(error => {
+                console.error("Xatolik:", error);
+                alert("Xatolik yuz berdi ❌");
+            });
+        }
+    </script>
+
+            
